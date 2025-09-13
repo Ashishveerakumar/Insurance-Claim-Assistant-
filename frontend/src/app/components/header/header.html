@@ -1,0 +1,17 @@
+<header class="dashboard-header">
+  <h1>Insurance Claim Assistant</h1>
+  <div class="user-info">
+    <ng-container *ngIf="currentUser; else loggedOut">
+      <a routerLink="/dashboard" class="nav-link">Home</a>
+      <a routerLink="/my-plans" class="nav-link">My Plans</a>
+      <a routerLink="/claim-insurance" class="nav-link">Claim Insurance</a>
+      <span>Welcome, {{ currentUser.name }}</span>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </ng-container>
+    <ng-template #loggedOut>
+      <a routerLink="/login" class="nav-link">Login</a>
+      <a routerLink="/register" class="nav-link">Register</a>
+    </ng-template>
+  </div>
+</header>
+

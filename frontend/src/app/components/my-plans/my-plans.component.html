@@ -1,0 +1,24 @@
+<div class="my-plans-container">
+  <h2>My Plans</h2>
+  <div *ngIf="plans.length === 0" class="no-plans-message">
+    You have not applied for any plans yet.
+  </div>
+  <table *ngIf="plans.length > 0" class="plans-table">
+    <thead>
+      <tr>
+        <th>Plan Name</th>
+        <th>Insurance ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let plan of plans">
+        <td>Car Insurance</td>
+        <td>{{ plan.insuranceId }}</td>
+        <td>
+          <button (click)="cancelPlan(plan._id)" class="cancel-button">Cancel Plan</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

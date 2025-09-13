@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="form-container">
+    <h2>Insurance Claim Form</h2>
+    <form [formGroup]="claimForm" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend>Policy Holder Details</legend>
+        <div class="form-group">
+          <label for="policyNumber">Policy Number</label>
+          <input type="text" id="policyNumber" formControlName="policyNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="policyHolderName">Policy Holder’s Name</label>
+          <input type="text" id="policyHolderName" formControlName="policyHolderName" required>
+        </div>
+        <div class="form-group">
+          <label for="contactNumber">Contact Number</label>
+          <input type="tel" id="contactNumber" formControlName="contactNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="emailAddress">Email Address</label>
+          <input type="email" id="emailAddress" formControlName="emailAddress" required>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Incident Details</legend>
+        <div class="form-group">
+          <label for="descriptionOfDamage">Description of Damage</label>
+          <textarea id="descriptionOfDamage" formControlName="descriptionOfDamage" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="dateTimeOfDamage">Date & Time of Damage</label>
+          <input type="datetime-local" id="dateTimeOfDamage" formControlName="dateTimeOfDamage" required>
+        </div>
+        <div class="form-group">
+          <label for="placeOfAccident">Place of Accident</label>
+          <input type="text" id="placeOfAccident" formControlName="placeOfAccident" required>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Vehicle Details</legend>
+        <div class="form-group">
+          <label for="vehicleNumber">Vehicle Number</label>
+          <input type="text" id="vehicleNumber" formControlName="vehicleNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="fuelType">Fuel Type</label>
+          <select id="fuelType" formControlName="fuelType" required>
+            <option value="">Select Fuel Type</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Uploads</legend>
+        <div class="form-group">
+          <label for="photoOfDamagedVehicle">Photo of Damaged Vehicle</label>
+          <input type="file" id="photoOfDamagedVehicle" (change)="onFileChange($event, 'photoOfDamagedVehicle')" accept="image/*" required>
+        </div>
+        <div class="form-group">
+          <label for="drivingLicense">Driving License of Driver at Accident Time</label>
+          <input type="file" id="drivingLicense" (change)="onFileChange($event, 'drivingLicense')" accept=".pdf,image/*" required>
+        </div>
+      </fieldset>
+
+      <button type="submit" [disabled]="!claimForm.valid">Submit Claim</button>
+    </form>
+  </div>
+  <div class="chatbot-container">
+    <app-chatbot></app-chatbot>
+  </div>
+</div>

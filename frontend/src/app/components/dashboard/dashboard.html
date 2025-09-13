@@ -1,0 +1,16 @@
+<div class="dashboard-container">
+
+  <div class="plans-list">
+  <button
+  class="plan-tile"
+  *ngFor="let plan of plans"
+  (click)="viewPlan(plan.id)"
+>
+  <span class="plan-name">{{ plan.name }}</span>
+  <span class="chevron">›</span>
+</button>
+</div>
+
+</div>
+
+

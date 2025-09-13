@@ -1,0 +1,128 @@
+<div class="form-container">
+  <div *ngIf="isSubmitted" class="success-message">
+    Form submitted successfully
+    <button (click)="goToHomePage()" class="home-button">Back to Home Page</button>
+  </div>
+
+  <div *ngIf="hasApplied" class="already-applied-message">
+    You have already applied to this plan
+    <button (click)="goToHomePage()" class="home-button">Back to Home Page</button>
+  </div>
+
+  <div *ngIf="!isSubmitted && !hasApplied">
+    <button type="button" (click)="goBack()" class="back-button">Back</button>
+    <h2>Car Insurance Application</h2>
+    <form *ngIf="carInsuranceForm" [formGroup]="carInsuranceForm" (ngSubmit)="onSubmit()">
+
+      <!-- Proposer / Life Assured Personal Details -->
+      <h3>Personal Details</h3>
+      <div class="form-group">
+        <label>Full Name:</label>
+        <input type="text" formControlName="fullName">
+        <div *ngIf="carInsuranceForm.get('fullName')?.invalid && carInsuranceForm.get('fullName')?.touched" class="error-message">
+          <span *ngIf="carInsuranceForm.get('fullName')?.errors?.['required']">Full Name is required.</span>
+          <span *ngIf="carInsuranceForm.get('fullName')?.errors?.['pattern']">Full Name can only contain letters and spaces.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Date of Birth:</label>
+        <input type="date" formControlName="dateOfBirth">
+        <div *ngIf="carInsuranceForm.get('dateOfBirth')?.invalid && carInsuranceForm.get('dateOfBirth')?.touched" class="error-message">
+          Date of Birth is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Gender:</label>
+        <select formControlName="gender">
+          <option value="">Select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <div *ngIf="carInsuranceForm.get('gender')?.invalid && carInsuranceForm.get('gender')?.touched" class="error-message">
+          Gender is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Address:</label>
+        <textarea formControlName="address"></textarea>
+        <div *ngIf="carInsuranceForm.get('address')?.invalid && carInsuranceForm.get('address')?.touched" class="error-message">
+          Address is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Contact Number:</label>
+        <input type="text" formControlName="contactNumber">
+        <div *ngIf="carInsuranceForm.get('contactNumber')?.invalid && carInsuranceForm.get('contactNumber')?.touched" class="error-message">
+          <span *ngIf="carInsuranceForm.get('contactNumber')?.errors?.['required']">Contact Number is required.</span>
+          <span *ngIf="carInsuranceForm.get('contactNumber')?.errors?.['pattern']">Please enter a valid 10-digit mobile number.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address:</label>
+        <input type="email" formControlName="emailAddress">
+        <div *ngIf="carInsuranceForm.get('emailAddress')?.invalid && carInsuranceForm.get('emailAddress')?.touched" class="error-message">
+          <span *ngIf="carInsuranceForm.get('emailAddress')?.errors?.['required']">Email is required.</span>
+          <span *ngIf="carInsuranceForm.get('emailAddress')?.errors?.['email']">Please enter a valid email address.</span>
+        </div>
+      </div>
+
+
+
+      <!-- Vehicle Information -->
+      <h3>Vehicle Information</h3>
+      <div class="form-group">
+        <label>Vehicle Number:</label>
+        <input type="text" formControlName="vehicleNumber">
+        <div *ngIf="carInsuranceForm.get('vehicleNumber')?.invalid && carInsuranceForm.get('vehicleNumber')?.touched" class="error-message">
+          Vehicle Number is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Vehicle Colour:</label>
+        <input type="text" formControlName="vehicleColour">
+        <div *ngIf="carInsuranceForm.get('vehicleColour')?.invalid && carInsuranceForm.get('vehicleColour')?.touched" class="error-message">
+          Vehicle Colour is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Fuel Type:</label>
+        <select formControlName="fuelType">
+          <option value="">Select</option>
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+        </select>
+        <div *ngIf="carInsuranceForm.get('fuelType')?.invalid && carInsuranceForm.get('fuelType')?.touched" class="error-message">
+          Fuel Type is required.
+        </div>
+      </div>
+
+      <!-- Documents Required (Uploads in Website) -->
+      <h3>Uploads</h3>
+      <div class="form-group">
+        <label>Identity Proof:</label>
+        <input type="file" (change)="onFileChange($event, 'identityProof')">
+        <div *ngIf="!identityProofFile && submitted" class="error-message">
+          Identity Proof is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Vehicle RC Copy:</label>
+        <input type="file" (change)="onFileChange($event, 'vehicleRcCopy')">
+        <div *ngIf="!vehicleRcCopyFile && submitted" class="error-message">
+          Vehicle RC Copy is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Passport-size Photograph:</label>
+        <input type="file" (change)="onFileChange($event, 'photograph')">
+        <div *ngIf="!photographFile && submitted" class="error-message">
+          Photograph is required.
+        </div>
+      </div>
+
+      <button type="submit">Submit Application</button>
+      </form>
+  </div>
+</div>

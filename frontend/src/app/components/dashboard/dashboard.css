@@ -1,0 +1,71 @@
+/* Container */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f0f9ff; /* light gradient-like feel */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Header */
+.dashboard-header {
+  background: #003f91;
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-logout {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #dc2626;
+}
+
+/* Plans List */
+.plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px;
+  
+}
+
+/* Plan Item Style */
+.plan-tile {
+  width: 100%;
+  background: #0056a6; /* strong blue */
+  color: white;
+  padding: 18px 24px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.plan-tile:hover {
+  background: #004080;
+}

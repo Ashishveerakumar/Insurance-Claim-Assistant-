@@ -1,0 +1,26 @@
+<button class="chat-toggle" (click)="toggle()" aria-label="Open chat">💬</button>
+
+<div class="chatbot" *ngIf="isOpen">
+  <div class="chat-header">
+    <span>💬 {{ title }}</span>
+    <button class="close-btn" (click)="toggle()" aria-label="Close">×</button>
+  </div>
+
+  <div class="chat-messages" id="chat-messages">
+    <div *ngFor="let m of messages" [ngClass]="m.sender" class="msg">{{ m.text }}</div>
+    <div class="typing" *ngIf="loading">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <textarea [(ngModel)]="userInput"
+              (keydown)="onKeydown($event)"
+              placeholder="Type your question…"
+              rows="1"></textarea>
+    <button (click)="send()">➤</button>
+  </div>
+</div>
+
+
+

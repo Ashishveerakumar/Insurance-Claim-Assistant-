@@ -1,0 +1,32 @@
+<div class="chatbot-widget">
+  <div class="chat-header">
+    <h2>Claim Assistant</h2>
+  </div>
+  <div class="chat-body" #chatBody>
+    <div *ngFor="let message of messages" class="message-container">
+      <div class="message" [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}">
+        <p *ngIf="message.text" [innerHTML]="!message.isUser ? convertMarkdownToHtml(message.text) : message.text"></p>
+        <img *ngIf="message.imageUrl" [src]="message.imageUrl" alt="Uploaded Image" class="chat-image">
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="message-container">
+      <div class="message bot-message">
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-footer">
+    <div *ngFor="let url of imagePreviewUrls; let i = index" class="image-preview-container">
+      <img [src]="url" class="image-preview">
+      <button (click)="removeSelectedImage(i)" class="remove-image-btn">×</button>
+    </div>
+    <input type="text" placeholder="Type a message..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
+    <button (click)="sendMessage()">Send</button>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput hidden multiple>
+    <button (click)="fileInput.click()">Upload</button>
+  </div>
+</div>
